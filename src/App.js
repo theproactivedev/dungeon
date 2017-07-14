@@ -5,12 +5,12 @@ import Result from './Result';
 import './App.css';
 
 class App extends Component {
-	constructor() {
+	 constructor() {
     super();
     this.state = {
       cells: [],
-      rows: 19,
-      cols: 28,
+      rows: 40,
+      cols: 60,
       playerRow: 20,
       playerCol: 15,
       player: 0,
@@ -42,14 +42,16 @@ class App extends Component {
     this.setState({
       playerRow: 20,
       playerCol: 15,
+			player: 0,
       health: 100,
       level: 1,
       weapon: [],
       attack: 5,
       result: [],
       playing: true
-    });
-    this.initializeBoard();
+    }, function() {
+			this.initializeBoard();
+		});
   }
   
   setStateBasedOn(num) {
@@ -71,7 +73,7 @@ class App extends Component {
  
   initializeBoard() {
     console.log("Is this happening?");
-    var board = this.state.cells;
+    var board = [];
     var count = -1;
     for (var r = 0; r < this.state.rows; r++) {
       var row = [];
@@ -80,29 +82,31 @@ class App extends Component {
         var state = this.setStateBasedOn(num);
         var ID = ++count;
 
-        if (r === 2 && c === 15) {
+        if (r === 20 && c === 15) {
           state = "cell player";
           this.setState({
             player: ID
           });
         }
-        if (r === 2 && c === 14 || r === 4 && c === 11) {
+        if ((r === 20 && c === 14) || (r === 4 && c === 53)) {
           state = "cell space";
         }
-        if (r === 4 && c === 10) {
+        if (r === 4 && c === 54) {
           state = "cell enemy boss";
         }
         
         var cell = {
           id: ID,
           status: state,
-          life: 100
+          life: 100,
+          forKey: num
         };
         row.push(cell);
       }
       board.push(row);
     }
     this.setState({cells: board});
+    // this.renderCells(board);
   }
   
   isWithinGrid(r, c) {
@@ -283,11 +287,11 @@ class App extends Component {
         var cell;
         if (obj.status === "cell player") {
           cell = (
-            <Player key={obj.id} id={obj.id} status={obj.status} onKeyDown={this.handleKeyPress} />
+            <Player key={obj.forKey} id={obj.id} status={obj.status} onKeyDown={this.handleKeyPress} />
           );
         } else {
           cell = (
-            <Cell key={obj.id} id={obj.id} status={obj.status} />
+            <Cell key={obj.forKey} id={obj.id} status={obj.status} />
           );
         }
         
