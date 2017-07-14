@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P|Space+Mono);
+
+$font-headline: 'Press Start 2P', cursive
+$font-text: 'Space Mono', monospace 
+
+body
+  background-color: #000
+  color: #fff
+  padding-top: 20px
+  font-family: $font-text
+  
+h1
+  font-family: $font-headline
+
+.intro
+  text-align: center
+  
+#content
+  text-align: center
+  
+.properties p
+  display: inline-block
+  margin-right: 15px
+  font-family: $font-text
+  text-align: center
+  
+.board
+  margin: 0 auto
+  background-color: #fff
+  width: 840px
+  height: 560px
+  // border: 1px solid #fff
+  
+.cell
+  border: 1px solid #fff
+  width: 28px
+  height: 28px
+  background-color: #fff
+  display: block
+  float: left
+  
+.barrier
+  background-color: #000
+  border-color: #000
+  
+.weapon
+  background-color: #d318f4
+  border-color: #d318f4
+  
+.health
+  background-color: green
+  border-color: green
+  
+.enemy
+  background-color: red
+  border-color: red
+  
+.player
+  background-color: blue
+  border-color: blue
+  border-radius: 50%
+  
+.msg
+  background-color: green
+  padding: 5px
+  text-align: center
+  font-size: 16px
+  font-family: $font-text
+
+footer
+  p
+    font-family: $font-text
+    text-align: center
+    a
+      color: grey
+      &:hover
+        color: darken(#fff, 25)
+	
